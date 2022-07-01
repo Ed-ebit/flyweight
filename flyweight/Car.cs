@@ -6,25 +6,29 @@ using System.Threading.Tasks;
 
 namespace flyweight
 {
-    public class Car : ICar
+    public class Car : IVehicle  //actual flyweight object
     {
-        public string Make {get; private set;}
+        public string Make { get; private set; }
 
         public string Color { get; private set; }
 
-        public bool IsSold { get; private set; }
+        public string Id  { get; }
 
-        public Car(string make, string color, bool isSold)
+        public Car(string make, string color, string id)
         {
             Make = make;
             Color = color;
-            IsSold = isSold;
+            Id = id;
         }
 
-        public void SetLocation(decimal lat, decimal lng)
+        public void SetDetails(string year, string owner) // combines intrinsic and extrinsic data
+                                                          // (or values) via Method
         {
-            Console.WriteLine($"Location of Car: {Make} with Color: {Color} is {lat}, {lng}\n" +
-                $"Car is already sold: {IsSold}");
+            Console.WriteLine($"Year of production and current owner of Car: {Make} with Color: {Color} is {year}, {owner}");
         }
+        //public void SetOwnership( bool IsSold){
+        //    Console.WriteLine($"Car is already Sold: {IsSold}");
+        //    }
+
     }
 }
