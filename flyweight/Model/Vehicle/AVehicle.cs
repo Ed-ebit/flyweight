@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace flyweight.Model.Vehicle
 {
-    internal class AVehicle
+    internal abstract class AVehicle
     {
+        public string Make { get; private set; }
+
+        public string Color { get; private set; }
+
+        public string Id { get; }
+
+        public abstract void SetDetails(string year, string owner);
     }
 }

@@ -8,9 +8,10 @@ namespace flyweight.Model.Vehicle
 {
     internal class Car : AVehicle
     {
+
         public override void SetDetails(string year, string owner)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Year of production and current owner of Car: {Make} with Color: {Color} is {year}, {owner}\n");
         }
     }
 }

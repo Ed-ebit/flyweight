@@ -1,38 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using flyweight.Model.Vehicle;
 
 namespace flyweight
 {
-    public class VehicleFactory
+    internal class VehicleFactory
     {
+        interface 
+
         private static readonly Lazy<VehicleFactory> instance = new Lazy<VehicleFactory>(() => new VehicleFactory());
-        private Dictionary<string, IVehicle> vehicle = new Dictionary<string, IVehicle>();
+        private Dictionary<string, AVehicle> vehicle = new Dictionary<string, AVehicle>();
 
         private VehicleFactory() { }// CarFactory is Singleton
         public static VehicleFactory GetInstance() { return instance.Value; } // CarFactory is Singleton
 
-        public IVehicle GetVehicle(string make, string color)
+        public AVehicle GetVehicle( AVehicle vehicle, string make, string color)
         {
             string vehicleID = make + color;
-            IVehicle? vehicle = null;
             if (this.vehicle.ContainsKey(vehicleID))
             {
-                vehicle = this.vehicle[vehicleID];
                 Console.WriteLine("Returning cached Model for Vehicle-Creation: {0}", vehicleID);
+                return this.vehicle[vehicleID];
             }
-            else
-            {
-                vehicle = new Car(make, color, vehicleID);
-                this.vehicle.Add(vehicleID, vehicle);
-                Console.WriteLine("Instanciating new Object for Vehicle-Creation: {0}", vehicleID);
-            }
+
+            vehicle.SetDetails(make, color);
+
+            this.vehicle.Add(vehicleID, vehicle);
+            Console.WriteLine("Instanciating new Object for Vehicle-Creation: {0}", vehicleID);
+
             return vehicle;
         }
-
-        
-
     }
 }

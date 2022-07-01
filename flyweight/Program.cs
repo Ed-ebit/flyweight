@@ -1,4 +1,6 @@
-﻿namespace flyweight
+﻿using flyweight.Model.Vehicle;
+
+namespace flyweight
 {
     public class Program
     {
@@ -6,7 +8,7 @@
         {
             VehicleFactory vehicleFactory = VehicleFactory.GetInstance();
 
-            IVehicle car = vehicleFactory.GetCar("BMW", "gelb");
+            var car = vehicleFactory.GetVehicle(Car, "BMW", "gelb");
             car.SetDetails("1997", "Peter Hanssen");
 
             car = vehicleFactory.GetCar("BMW", "gelb");
