@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static flyweight.Program;
 
 namespace flyweight
 {
@@ -25,7 +26,14 @@ namespace flyweight
             }
             else
             {
-                vehicle = new Car(make, color, vehicleID);
+                if (Program.arg == "boat")
+                {
+                    vehicle = new Boat(make, color, vehicleID);
+                }
+                else
+                {
+                    vehicle = new Car(make, color, vehicleID);
+                }
                 this.vehicle.Add(vehicleID, vehicle);
                 Console.WriteLine("Instanciating new Object for Vehicle-Creation: {0}", vehicleID);
             }
